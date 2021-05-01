@@ -4,7 +4,7 @@ import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week";
 import Sidebar from "../sidebar/Sidebar";
 import Modal from "../modal/Modal";
-import { fetchEventsList, createEvent, deleteEvent } from "../../gateway/gateway.js";
+import { fetchEventsList, deleteEvent } from "../../gateway/gateway.js";
 // import events from "../../gateway/events";
 
 import "./calendar.scss";
