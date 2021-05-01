@@ -22,28 +22,9 @@ const Modal = (props) => {
     description: "",
   });
 
-  // function handleInputsField(e) {
-  //   if (e.target.className === "event") {
-  //     dateInput = 0;
-  //     startTimeInput = 0;
-  //     endTimeInput = 0;
-  //     return;
-  //   }
-  //   dateInput = moment().format("YYYY-MM-DD");
-  //   startTimeInput = moment().format("HH:mm");
-  //   endTimeInput = moment().format("HH:mm");
-  // }
-
-  // const element = document.createElement("div");
-
-  // useEffect(() => {
-  //   modalRoot.appendChild(element);
-  //   return modalRoot.removeChild(element);
-  // });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(startTimeInput.slice(-2) % 15);
+    // console.log(startTimeInput.slice(-2) % 15);
 
     setForm({
       ...form,
@@ -102,7 +83,12 @@ const Modal = (props) => {
   const { title, date, startTime, endTime, description } = form;
 
   return (
-    <div className="modal overlay" onClick={onCloseModal}>
+    <div
+      className="modal overlay"
+      onClick={() => {
+        onCloseModal({});
+      }}
+    >
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <div className="create-event">
           <button

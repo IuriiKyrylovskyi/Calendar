@@ -20,6 +20,7 @@ const Event = ({ id, height, marginTop, title, time,startTime,  handleDelete, fe
       return setIsClicked(!isEvent);
     }
     console.log(height);
+    setIsClicked(false);
     return setIsClicked(!isClicked);
   };
 

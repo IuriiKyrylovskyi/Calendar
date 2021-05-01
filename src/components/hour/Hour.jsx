@@ -20,38 +20,43 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
   // console.log(currentMonth);
 
   return (
-    <div
-      className="calendar__time-slot"
-      data-time={dataHour + 1}
-      onClick={onOpenModal}
-      // onTarget={() => console.log(dataDay)}
-      //
-    >
+    <div className="calendar__time-slot" data-time={dataHour + 1}>
       {/* if no events in the current hour nothing will render here */}
-      {hourEvents.map(({ id, date, startTime, endTime, title }) => {
-        const dateFrom = new Date(date + " " + startTime);
-        const dateTo = new Date(date + " " + endTime);
+      {hourEvents.length ? (
+        hourEvents.map(({ id, date, startTime, endTime, title }) => {
+          const dateFrom = new Date(date + " " + startTime);
+          const dateTo = new Date(date + " " + endTime);
 
-        // console.log(id, date, startTime, endTime, title);
-        // console.log((dateTo - dateFrom) / 1000 / 60 / 60);
-        // const eventDuration = (dateTo - dateFrom) / 1000 / 60 / 60;
+          // console.log(id, date, startTime, endTime, title);
+          // console.log((dateTo - dateFrom) / 1000 / 60 / 60);
+          // const eventDuration = (dateTo - dateFrom) / 1000 / 60 / 60;
 
-        return (
-          //eventDuration <= 6 &&
-          <Event
-            key={id}
-            id={id}
-            //calculating event height = duration of event in minutes
-            height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
-            marginTop={dateFrom.getMinutes()}
-            time={`${startTime} - ${endTime}`}
-            startTime={dateFrom.getTime()}
-            title={title}
-            fetchEvents={fetchEvents}
-            handleDelete={deleteEvent}
-          />
-        );
-      })}
+          return (
+            <Event
+              key={id}
+              id={id}
+              //calculating event height = duration of event in minutes
+              height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
+              marginTop={dateFrom.getMinutes()}
+              time={`${startTime} - ${endTime}`}
+              // startTime={dateFrom.getTime()}
+              title={title}
+              fetchEvents={fetchEvents}
+              handleDelete={deleteEvent}
+            />
+          );
+        })
+      ) : (
+        <div
+          style={{ width: "100%", height: "100%" }}
+          onClick={() => {
+            const start = new Date(date);
+            const end = new Date(date);
+            end.setHours(end.getHours() + 1);
+            onOpenModal({ start, end });
+          }}
+        ></div>
+      )}
       {currentDate && <TimeLine weekStartDate={weekStartDate} />}
     </div>
   );
