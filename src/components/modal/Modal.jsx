@@ -66,7 +66,7 @@ const Modal = (props) => {
     // console.log(date);
     // console.log(startTime);
     // console.log(endTime);
-    !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
+    !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : !validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
   };
 
   const { isOpen, onCloseModal } = useGlobalContext();
