@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../context";
 import { createEvent } from "../../gateway/gateway";
 // import moment from "moment";
 import "./modal.scss";
-import { validateEventRange, validateEventsInCalendarCell } from "../../validation/validateModalInputs";
+import { validateEventRange, validateEventsInCalendarCell, validateInputMins } from "../../validation/validateModalInputs";
 
 // const modalRoot = document.querySelector("#modal");
 
@@ -43,6 +43,7 @@ const Modal = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(startTimeInput.slice(-2) % 15);
 
     setForm({
       ...form,
@@ -54,6 +55,7 @@ const Modal = (props) => {
     const { title, date, startTime, endTime, description } = form;
     const { fetchEvents } = props;
     let id; // = Math.random()*1000;
+
     const newEvent = {
       id: id,
       title: title,
@@ -63,6 +65,11 @@ const Modal = (props) => {
       description: description,
     };
 
+    const start = newEvent.startTime;
+    const end = newEvent.endTime;
+    if (!validateInputMins(start) || !validateInputMins(end)) {
+      return alert("minuts should be multiple of 15");
+    }
     // console.log(date);
     // console.log(startTime);
     // console.log(endTime);

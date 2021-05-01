@@ -25,10 +25,15 @@ export const validateEventsInCalendarCell = (events, newEvent) => {
   return onlyOneEventPerTime.length === events.length;
 };
 
-export const validateOnDelete = startTime => {
+export const validateOnDelete = (startTime) => {
   const timeNow = new Date().getTime();
   const timeDiff = startTime - timeNow;
   const FIFTEEN_MINS = 15 * 60 * 1000;
 
   return timeDiff <= FIFTEEN_MINS || timeDiff <= 0;
 };
+
+export const validateInputMins = (time) => {
+  return time.slice(-2) % 15 === 0;
+};
+
