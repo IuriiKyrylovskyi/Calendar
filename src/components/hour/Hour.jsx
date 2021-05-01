@@ -2,7 +2,6 @@ import React from "react";
 import { useGlobalContext } from "../../context";
 import TimeLine from "../timeLine/TimeLine";
 import Event from "../event/Event";
-
 // import { deleteEvent } from '../../gateway/gateway';
 // import { formatMins } from "../../../src/utils/dateUtils.js";
 
@@ -46,6 +45,7 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
             height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
             marginTop={dateFrom.getMinutes()}
             time={`${startTime} - ${endTime}`}
+            startTime={dateFrom.getTime()}
             title={title}
             fetchEvents={fetchEvents}
             handleDelete={deleteEvent}

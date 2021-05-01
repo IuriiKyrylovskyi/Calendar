@@ -17,10 +17,18 @@ export const validateEventsInCalendarCell = (events, newEvent) => {
     const eventStart = formateToMscs(event.date, event.startTime);
     const eventEnd = formateToMscs(event.date, event.endTime);
 
-    console.log(`${newEventStart} >= ${eventEnd} || ${newEventEnd} <= ${eventStart}`);
+    // console.log(`${newEventStart} >= ${eventEnd} || ${newEventEnd} <= ${eventStart}`);
     return newEventStart >= eventEnd || newEventEnd <= eventStart;
     // || (newEventStart < eventStart && newEventEnd > eventStart) || (newEventStart < eventEnd && newEventEnd > eventEnd);
   });
-  console.log(onlyOneEventPerTime.length === events.length);
+  // console.log(onlyOneEventPerTime.length === events.length);
   return onlyOneEventPerTime.length === events.length;
+};
+
+export const validateOnDelete = startTime => {
+  const timeNow = new Date().getTime();
+  const timeDiff = startTime - timeNow;
+  const FIFTEEN_MINS = 15 * 60 * 1000;
+
+  return timeDiff <= FIFTEEN_MINS || timeDiff <= 0;
 };

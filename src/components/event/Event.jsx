@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../../context";
 import { MdDelete } from "react-icons/md";
+import { validateOnDelete } from "../../validation/validateModalInputs";
 import "./event.scss";
 
-const Event = ({ id, height, marginTop, title, time, handleDelete, fetchEvents }) => {
+const Event = ({ id, height, marginTop, title, time,startTime,  handleDelete, fetchEvents }) => {
   const { isEvent, isOpen } = useGlobalContext();
 
   const [isClicked, setIsClicked] = useState(false);
@@ -23,6 +24,10 @@ const Event = ({ id, height, marginTop, title, time, handleDelete, fetchEvents }
   };
 
   function onCloseDelete() {
+    if (!validateOnDelete(startTime)) {
+      setIsClicked(false);
+      return alert("You can do it 15 mins to event");
+    }
     handleDelete(id);
     fetchEvents();
     setIsClicked(false);
