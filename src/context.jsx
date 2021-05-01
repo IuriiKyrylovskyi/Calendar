@@ -35,7 +35,6 @@ const AppProvider = ({ children }) => {
         dateInput,
         startTimeInput,
         endTimeInput,
-        // onOpenModalStartTime,
       }}
     >
       {children}

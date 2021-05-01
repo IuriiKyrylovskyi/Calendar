@@ -4,25 +4,42 @@ import { MdDelete } from "react-icons/md";
 import { validateOnDelete } from "../../validation/validateModalInputs";
 import "./event.scss";
 
-const Event = ({ id, height, marginTop, title, time,startTime,  handleDelete, fetchEvents }) => {
+const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fetchEvents }) => {
   const { isEvent, isOpen } = useGlobalContext();
 
   const [isClicked, setIsClicked] = useState(false);
 
-  const onOpenDelete = (e) => {
-    if (isOpen) {
-      return;
+  function handleClickOnEvent() {
+    if (!isClicked) {
+      document.addEventListener("click", handleOutsideClick, false);
+    } else {
+      document.removeEventListener("click", handleOutsideClick, false);
     }
-    // if (e.target.className === 'event') {
-    //   return setIsClicked(!isEvent);
-    // }
-    if (!isEvent && !isClicked) {
-      return setIsClicked(!isEvent);
+
+    setIsClicked(!isClicked);
+  }
+
+  let node;
+  function handleOutsideClick(e) {
+    if (!node.contains(e.target)) {
+      handleClickOnEvent();
     }
-    console.log(height);
-    setIsClicked(false);
-    return setIsClicked(!isClicked);
-  };
+  }
+
+  // const onOpenDelete = (e) => {
+  //   if (isOpen) {
+  //     return;
+  //   }
+  //   // if (e.target.className === 'event') {
+  //   //   return setIsClicked(!isEvent);
+  //   // }
+  //   if (!isEvent && !isClicked) {
+  //     return setIsClicked(!isEvent);
+  //   }
+  //   console.log(height);
+  //   setIsClicked(false);
+  //   return setIsClicked(!isClicked);
+  // };
 
   function onCloseDelete() {
     if (!validateOnDelete(startTime)) {
@@ -42,9 +59,13 @@ const Event = ({ id, height, marginTop, title, time,startTime,  handleDelete, fe
   return (
     <>
       <div
+        ref={node => {
+          node = node;
+        }}
         style={eventStyle}
         className="event"
-        onClick={onOpenDelete}
+        onClick={handleClickOnEvent}
+        // onClick={onOpenDelete}
         //
       >
         <div className="event__title">{title}</div>
