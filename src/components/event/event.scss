@@ -1,0 +1,47 @@
+.event {
+  position: absolute;
+  width: 80%;
+  background-color: cornflowerblue;
+  z-index: 1;
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+
+  &__title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    font-weight: bold;
+    background-color: red;
+  }
+}
+
+.delete-event-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 25%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #000;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  box-shadow: 3px 3px 5px 2px #ccc;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s ease-in;
+  &:hover {
+    transform: scale(1.1);
+    color: red;
+  }
+  svg{
+    margin-right: 7px;
+    fill: rgba(0, 0, 0, 0.5);
+  }
+}
