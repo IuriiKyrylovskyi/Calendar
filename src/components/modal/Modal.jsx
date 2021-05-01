@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../context";
 import { createEvent } from "../../gateway/gateway";
 // import moment from "moment";
 import "./modal.scss";
-import { validateEventRange } from "../../validation/validateModalInputs";
+import { validateEventRange, validateEventsInCalendarCell } from "../../validation/validateModalInputs";
 
 // const modalRoot = document.querySelector("#modal");
 
@@ -66,7 +66,7 @@ const Modal = (props) => {
     // console.log(date);
     // console.log(startTime);
     // console.log(endTime);
-    validateEventRange(date, startTime, endTime) ? createEvent(newEvent).then(() => fetchEvents()) : alert("Event shouldn't be more than 6 hours!");
+    !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
   };
 
   const { isOpen, onCloseModal } = useGlobalContext();

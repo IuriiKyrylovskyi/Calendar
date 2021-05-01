@@ -62,7 +62,7 @@ const Calendar = (props) => {
           />
         </div>
       </div>
-      {isOpen && <Modal fetchEvents={fetchEvents} />}
+      {isOpen && <Modal fetchEvents={fetchEvents} events={events} />}
     </section>
   );
 };

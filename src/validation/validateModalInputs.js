@@ -8,3 +8,18 @@ export const validateEventRange = (date, start, end) => {
 
   return begin < finish && finish - begin <= eventDuration;
 };
+
+export const validateEventsInCalendarCell = (events, newEvent) => {
+  const newEventStart = formateToMscs(newEvent.date, newEvent.startTime);
+  const newEventEnd = formateToMscs(newEvent.date, newEvent.endTime);
+
+  const onlyOneEventPerTime = events.filter((event) => {
+    const eventStart = formateToMscs(event.date, event.startTime);
+    const eventEnd = formateToMscs(event.date, event.endTime);
+
+    return (newEventStart >= eventEnd || newEventEnd <= eventStart)
+      // || (newEventStart < eventStart && newEventEnd > eventStart) || (newEventStart < eventEnd && newEventEnd > eventEnd);
+  });
+
+  return onlyOneEventPerTime.lengh > 0 
+};
