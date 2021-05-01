@@ -2,22 +2,26 @@ import React from "react";
 import { useGlobalContext } from "../../context";
 import TimeLine from "../timeLine/TimeLine";
 import Event from "../event/Event";
+
 // import Modal from "../modal/Modal";
 
 // import { deleteEvent } from '../../gateway/gateway';
 // import { formatMins } from "../../../src/utils/dateUtils.js";
 
-const Hour = ({ weekStartDate, dataDay, dataHour, hourEvents, fetchEvents, deleteEvent }) => {
-  const currentDate = weekStartDate.getFullYear() === new Date().getFullYear() && weekStartDate.getMonth() === new Date().getMonth() && dataDay === new Date().getDate() && dataHour === new Date().getHours();
+const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEvents, deleteEvent }) => {
+  const currentMonth = new Date(weekDates[new Date().getDay()]).getMonth();
+
+  const currentDate =
+    weekStartDate.getFullYear() === new Date().getFullYear() &&
+    currentMonth && //
+    dataDay === new Date().getDate() &&
+    dataHour === new Date().getHours();
 
   const { isOpen, onOpenModal, onOpenModalStartTime } = useGlobalContext();
-
-  // const handleHour = () => {
-  //   console.log('hour', dataHour);
-  // console.log(onOpenModalStartTime(dataHour));
-  // onOpenModalStartTime(dataHour);
-  // };
-
+  
+  // console.log(currentDate);
+  // console.log(currentMonth);
+  
   return (
     <div
       className="calendar__time-slot"

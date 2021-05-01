@@ -19,18 +19,18 @@ const AppProvider = ({ children }) => {
     if (isEvent || e.target.closest(".event")) {
       return; // setEvent(false);
     }
-    if (e.target.className === "calendar__time-slot") {
-      // console.log(onOpenModalStartTime());
-      setDateInput("");
-      setStartTimeInput("");
-      setEndTimeInput("");
+    // if (e.target.className === "calendar__time-slot") {
+    //   // console.log(onOpenModalStartTime());
+    //   setDateInput("");
+    //   setStartTimeInput("");
+    //   setEndTimeInput("");
 
-      setEvent(false);
-      setIsOpen(true);
-      console.log(e);
-      console.log(e.nativeEvent);
-      return;
-    }
+    //   setEvent(false);
+    //   setIsOpen(true);
+    //   console.log(e);
+    //   console.log(e.nativeEvent);
+    //   return;
+    // }
 
     if (!e.target.closest("event")) {
       console.log(e.target.className);
