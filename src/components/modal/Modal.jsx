@@ -59,7 +59,7 @@ const Modal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(form);
+    console.log(form);
     handleEventCreate();
     onCloseModal();
   };
@@ -79,12 +79,7 @@ const Modal = (props) => {
   const { title, date, startTime, endTime, description } = form;
 
   return (
-    <div
-      className="modal overlay"
-      onClick={() => {
-        onCloseModal({});
-      }}
-    >
+    <div className="modal overlay" onClick={onCloseModal}>
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <div className="create-event">
           <button
