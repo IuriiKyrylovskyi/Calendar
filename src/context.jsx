@@ -29,6 +29,9 @@ const AppProvider = ({ children }) => {
       setIsOpen(true);
       console.log(e);
       console.log(e.target.dataset);
+      if (e.target.className === "calendar__day") {
+        console.log(e.target.dataset);
+      }
       return;
     }
 
