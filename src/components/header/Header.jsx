@@ -9,7 +9,7 @@ import { months } from "../../utils/dateUtils.js";
 import "./header.scss";
 
 const Header = (props) => {
-  const { isOpen, onOpenModal, onCloseModal } = useGlobalContext();
+  const { onOpenModal } = useGlobalContext();
   const { weekDates, handleTodayBtn, handleArrowBtn } = props;
   // const prevMonth = moment(props.weekDates[0]).format('MMM');
   // const nextMonth = moment(props.weekDates[6]).format('MMM');
