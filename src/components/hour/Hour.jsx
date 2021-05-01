@@ -3,8 +3,6 @@ import { useGlobalContext } from "../../context";
 import TimeLine from "../timeLine/TimeLine";
 import Event from "../event/Event";
 
-// import Modal from "../modal/Modal";
-
 // import { deleteEvent } from '../../gateway/gateway';
 // import { formatMins } from "../../../src/utils/dateUtils.js";
 
@@ -17,11 +15,11 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
     dataDay === new Date().getDate() &&
     dataHour === new Date().getHours();
 
-  const { isOpen, onOpenModal, onOpenModalStartTime } = useGlobalContext();
-  
+  const { onOpenModal } = useGlobalContext();
+
   // console.log(currentDate);
   // console.log(currentMonth);
-  
+
   return (
     <div
       className="calendar__time-slot"
@@ -51,13 +49,10 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
             title={title}
             fetchEvents={fetchEvents}
             handleDelete={deleteEvent}
-            // handleDelete={onDeleteEvent}
           />
         );
       })}
       {currentDate && <TimeLine weekStartDate={weekStartDate} />}
-      {/* {isOpen && <Modal fetchEvents={fetchEvents} />} */}
-      {/* <TimeLine weekStartDate={weekStartDate} /> */}
     </div>
   );
 };
