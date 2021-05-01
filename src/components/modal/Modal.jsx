@@ -14,17 +14,13 @@ const Modal = (props) => {
   const [form, setForm] = useState({
     title: "",
     date: dateInput,
-    // date: moment().format("YYYY-MM-DD"),
     startTime: startTimeInput,
-    // startTime: moment().format("HH:mm"),
     endTime: endTimeInput,
-    // endTime: moment().format("HH:mm"),
     description: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(startTimeInput.slice(-2) % 15);
 
     setForm({
       ...form,
@@ -63,7 +59,7 @@ const Modal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     handleEventCreate();
     onCloseModal();
   };
@@ -119,7 +115,6 @@ const Modal = (props) => {
                 className="event-form__field"
                 value={date}
                 onChange={handleChange}
-                // onSelect={selected}
               />
               <input
                 type="time"
