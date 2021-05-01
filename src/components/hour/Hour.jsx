@@ -7,7 +7,7 @@ import Event from "../event/Event";
 
 const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEvents, deleteEvent }) => {
   const currentMonth = new Date(weekDates[new Date().getDay()]).getMonth();
-  console.log(dataDay);
+  // console.log(dataDay);
   const currentDate =
     weekStartDate.getFullYear() === new Date().getFullYear() &&
     currentMonth && //
@@ -49,11 +49,12 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
       ) : (
         <div
           style={{ width: "100%", height: "100%" }}
-            onClick={() => {
+          onClick={() => {
             const date = weekDates.filter((dayDate) => dayDate.getDate() === dataDay);
-            const start = new Date(date);
-            const end = new Date(date);
-            end.setHours(end.getHours() + 1);
+            console.log(new Date(new Date(date).setHours(dataHour)).getHours());
+            const start = new Date(date).setHours(dataHour);
+            const end = new Date(date).setHours(dataHour + 1);
+            // end.setHours(end.getHours() + 1);
             onOpenModal({ start, end });
           }}
         ></div>

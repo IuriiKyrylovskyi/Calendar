@@ -16,9 +16,9 @@ const AppProvider = ({ children }) => {
   };
 
   const onOpenModal = ({ start, end }) => {
-    setDateInput(start ? moment(start).format("YYYY-MM-DD") : "");
-    setStartTimeInput(start ? moment(start).format("HH:mm") : "");
-    setEndTimeInput(end ? moment(end).format("HH:mm") : "");
+    setDateInput(start ? moment(start).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD"));
+    setStartTimeInput(start ? moment(start).format("HH:mm") : moment().format("HH:mm"));
+    setEndTimeInput(end ? moment(end).format("HH:mm") : moment().format("HH:mm"));
 
     setEvent(false);
     setIsOpen(true);
