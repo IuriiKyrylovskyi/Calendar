@@ -1,6 +1,6 @@
 import React from "react";
 import Hour from "../hour/Hour";
-
+import PropTypes from "prop-types";
 import "./day.scss";
 
 const Day = ({ weekStartDate, weekDates, dataDay, dayEvents, fetchEvents, deleteEvent }) => {
@@ -33,6 +33,15 @@ const Day = ({ weekStartDate, weekDates, dataDay, dayEvents, fetchEvents, delete
       })}
     </div>
   );
+};
+
+Day.propTypes = {
+  weekStartDate: PropTypes.instanceOf(Date),
+  weekDates: PropTypes.array,
+  dataDay: PropTypes.number,
+  dayEvents: PropTypes.array,
+  fetchEvents: PropTypes.func,
+  deleteEvent: PropTypes.func,
 };
 
 export default Day;
