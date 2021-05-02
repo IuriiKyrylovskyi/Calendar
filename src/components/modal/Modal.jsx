@@ -2,7 +2,6 @@ import React, { useState } from "react";
 // import { createPortal } from "react-dom";
 import { useGlobalContext } from "../../context";
 import { createEvent } from "../../gateway/gateway";
-// import moment from "moment";
 import "./modal.scss";
 import { validateEventRange, validateEventsInCalendarCell, validateInputMins } from "../../validation/validateModalInputs";
 
@@ -31,7 +30,7 @@ const Modal = (props) => {
   const handleEventCreate = () => {
     const { title, date, startTime, endTime, description } = form;
     const { fetchEvents } = props;
-    let id; // = Math.random()*1000;
+    let id;
 
     const newEvent = {
       id: id,
@@ -49,9 +48,7 @@ const Modal = (props) => {
     if (!validateInputMins(start) || !validateInputMins(end)) {
       return alert("minuts should be multiple of 15");
     }
-    // console.log(date);
-    // console.log(startTime);
-    // console.log(endTime);
+   
     !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : !validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
   };
 
@@ -63,14 +60,6 @@ const Modal = (props) => {
     handleEventCreate();
     onCloseModal();
   };
-
-  // const dayMonthYear = moment().format("YYYY-MM-DD");
-  // const timeStart = moment().format("HH:mm");
-  // const timeEnd = moment().format("HH:mm");
-
-  // console.log(timeStart);
-  // console.log(timeEnd);
-  // console.log(this.state);
 
   if (!isOpen) {
     return null;

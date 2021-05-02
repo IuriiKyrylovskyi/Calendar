@@ -6,8 +6,6 @@ import "./header.scss";
 const Header = (props) => {
   const { onOpenModal } = useGlobalContext();
   const { weekDates, handleTodayBtn, handleArrowBtn } = props;
-  // const prevMonth = moment(props.weekDates[0]).format('MMM');
-  // const nextMonth = moment(props.weekDates[6]).format('MMM');
 
   const monthAtWeekStart = months[new Date(weekDates[0]).getMonth()];
   const monthAtWeekEnd = months[new Date(weekDates[6]).getMonth()];
