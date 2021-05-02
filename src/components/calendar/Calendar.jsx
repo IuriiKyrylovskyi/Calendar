@@ -4,7 +4,8 @@ import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week";
 import Sidebar from "../sidebar/Sidebar";
 import Modal from "../modal/Modal";
-import { fetchEventsList, deleteEvent } from "../../gateway/gateway.js";
+import { fetchEventsList, deleteEvent } from "../../gateway/gateway";
+import PropTypes from "prop-types";
 import "./calendar.scss";
 
 const Calendar = (props) => {
@@ -19,14 +20,14 @@ const Calendar = (props) => {
   function handleEventDelete(id) {
     deleteEvent(id).then(() => fetchEvents());
   }
-  
+
   useEffect(() => {
     fetchEvents();
-  },[]);
-  
+  }, []);
+
   const { isOpen } = useGlobalContext();
   const { weekStartDate, weekDates } = props;
-  
+
   return (
     <section className="calendar">
       <Navigation weekDates={weekDates} />
@@ -46,6 +47,16 @@ const Calendar = (props) => {
       {isOpen && <Modal fetchEvents={fetchEvents} events={events} />}
     </section>
   );
+};
+
+Calendar.propTypes = {
+  weekStartDate: PropTypes.instanceOf(Date),
+  weekDates: PropTypes.array,
+  isOpen: PropTypes.bool.isRequired,
+};
+
+Calendar.defaultProps = {
+  isOpen: false,
 };
 
 export default Calendar;
