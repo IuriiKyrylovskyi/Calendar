@@ -12,6 +12,10 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
     dataDay === new Date().getDate() &&
     dataHour === new Date().getHours();
 
+  // const start = new Date();
+  // console.log(start) ? start.getHours() === dataHour : false;
+  // console.log(weekDates.filter((day) => day.getHours() === new Date().getHours()));
+
   const { onOpenModal } = useGlobalContext();
 
   // console.log(currentDate);
