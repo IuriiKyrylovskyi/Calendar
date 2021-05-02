@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../context";
 import { createEvent } from "../../gateway/gateway";
 import "./modal.scss";
 import { validateEventRange, validateEventsInCalendarCell, validateInputMins } from "../../validation/validateModalInputs";
-
+import PropTypes from "prop-types";
 // const modalRoot = document.querySelector("#modal");
 
 const Modal = (props) => {
@@ -43,11 +43,11 @@ const Modal = (props) => {
 
     const start = newEvent.startTime;
     const end = newEvent.startTime;
-   
+
     if (!validateInputMins(start) || !validateInputMins(end)) {
       return alert("minuts should be multiple of 15");
     }
-   
+
     !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : !validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
   };
 
@@ -92,13 +92,7 @@ const Modal = (props) => {
               //
             />
             <div className="event-form__time">
-              <input
-                type="date"
-                name="date"
-                className="event-form__field"
-                value={date}
-                onChange={handleChange}
-              />
+              <input type="date" name="date" className="event-form__field" value={date} onChange={handleChange} />
               <input
                 type="time"
                 name="startTime"
@@ -139,6 +133,22 @@ const Modal = (props) => {
     // ,
     // element
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onCloseModal: PropTypes.func,
+  dateInput: PropTypes.instanceOf(Date).isRequired,
+  startTimeInput: PropTypes.string.isRequired,
+  endTimeInput: PropTypes.string.isRequired,
+  fetchEvents: PropTypes.func,
+};
+
+Modal.defaultProps = {
+  isOpen: false,
+  dateInput: new Date(),
+  startTimeInput: "00:00",
+  endTimeInput: "00:00",
 };
 
 export default Modal;
