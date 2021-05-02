@@ -2,6 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../../context";
 import TimeLine from "../timeLine/TimeLine";
 import Event from "../event/Event";
+import PropTypes from "prop-types";
 
 const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEvents, deleteEvent }) => {
   const date = weekDates.filter((dayDate) => dayDate.getDate() === dataDay);
@@ -47,6 +48,16 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
       {currentDate && <TimeLine weekStartDate={weekStartDate} />}
     </div>
   );
+};
+
+Hour.propTypes = {
+  weekStartDate:PropTypes.instanceOf(Date),
+  weekDates:PropTypes.array,
+  dataDay:PropTypes.number,
+  dataHour:PropTypes.number,
+  hourEvents:PropTypes.array,
+  fetchEvents:PropTypes.func,
+  deleteEvent:PropTypes.func,
 };
 
 export default Hour;
