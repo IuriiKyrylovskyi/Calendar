@@ -1,41 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useGlobalContext } from "../../context";
 import { MdDelete } from "react-icons/md";
 import { validateOnDelete } from "../../validation/validateModalInputs";
 import "./event.scss";
 
 const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fetchEvents }) => {
-  const { isEvent, isOpen } = useGlobalContext();
-
-  const [isClicked, setIsClicked] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
 
   const ref = useRef();
 
-  useOnClickOutside(ref, () => setIsClicked(false));
-
-  // const onOpenDelete = (e) => {
-  //   if (isOpen) {
-  //     return;
-  //   }
-  //   // if (e.target.className === 'event') {
-  //   //   return setIsClicked(!isEvent);
-  //   // }
-  //   if (!isEvent && !isClicked) {
-  //     return setIsClicked(!isEvent);
-  //   }
-  //   console.log(height);
-  //   setIsClicked(false);
-  //   return setIsClicked(!isClicked);
-  // };
+  useOnClickOutside(ref, () => setIsOpenDelete(false));
 
   function onCloseDelete() {
     if (!validateOnDelete(startTime)) {
-      setIsClicked(false);
+      setIsOpenDelete(false);
       return alert("You can do it 15 mins to event");
     }
     handleDelete(id);
     fetchEvents();
-    setIsClicked(false);
+    setIsOpenDelete(false);
   }
 
   const eventStyle = {
@@ -49,12 +31,12 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
         ref={ref}
         style={eventStyle}
         className="event"
-        onClick={() => setIsClicked(!isClicked)}
+        onClick={() => setIsOpenDelete(!isOpenDelete)}
         //
       >
         <div className="event__title">{title}</div>
         <div className="event__time">{time}</div>
-        {isClicked && (
+        {isOpenDelete && (
           <span
             className="delete-event-btn"
             style={{ top: height - 10 }}
