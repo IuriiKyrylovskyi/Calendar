@@ -12,7 +12,7 @@ const TimeLine = () => {
       () =>
         setInterval(() => {
           setDate(new Date());
-        }, 1000),
+        }, 60000),
       secondsToMin * 1000
     );
 
