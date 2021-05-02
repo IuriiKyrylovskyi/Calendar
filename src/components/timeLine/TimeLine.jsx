@@ -1,57 +1,30 @@
-import React, { Component } from 'react';
-import './timeline.scss';
+import React, { useState, useEffect } from "react";
+import "./timeline.scss";
 
-class TimeLine extends Component {
-  state = {
-    date: new Date(),
-    isUpdate: true,
-  }
+const TimeLine = () => {
+  const [date, setDate] = useState(new Date());
+  const [isUpdate, setIsUpdate] = useState(true);
 
-  componentDidMount() {
-    if (this.isCurrentDate()) {
+  useEffect(() => {
+    const secondsToMin = 60 - new Date().getSeconds();
 
-      const timeSecDiff = 60 * 1000 - (new Date()).getMilliseconds();
+    const timeout = setTimeout(
+      () =>
+        setInterval(() => {
+          setDate(new Date());
+        }, 1000),
+      secondsToMin * 1000
+    );
 
-      setTimeout(() => this.interval, timeSecDiff);
+    return () => {
+      clearInterval(timeout);
+      setIsUpdate(false);
+    };
+  }, []);
 
-      this.interval = setInterval(() => {
-        this.setState({
-          date: new Date(),
-          isUpdate: true,
-        })
-      }, 1000)
-    }
-  }
+  const mins = date.getMinutes();
 
-  componentWillUnmount() {
-    this.setState({
-      ...this.state,
-      isUpdate: false
-    })
-    clearInterval(this.interval)
-  }
-
-  isCurrentDate = () => {
-    const weekStartDate = this.props.weekStartDate.getTime();
-    const weekEndDate = weekStartDate + 7 * 24 * 60 * 60* 1000;
-    const nowTime = (new Date()).getTime();
- 
-    return (nowTime < weekEndDate && nowTime > weekStartDate);
-  } 
-
-  render() {
-    console.log('render timeLine');
-    const mins = this.state.date.getMinutes();
-  
-    return (
-      this.state.isUpdate &&
-      <div
-        className="time-line"
-        style={{top: mins}}
-      >
-      </div>
-    )
-  }
-}
+  return isUpdate && <div className="time-line" style={{ top: mins }}></div>;
+};
 
 export default TimeLine;
