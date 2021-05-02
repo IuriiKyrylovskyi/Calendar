@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 // const modalRoot = document.querySelector("#modal");
 
 const Modal = (props) => {
-  const { dateInput, startTimeInput, endTimeInput } = useGlobalContext();
+  const { isOpen, onCloseModal, dateInput, startTimeInput, endTimeInput } = useGlobalContext();
 
   const [form, setForm] = useState({
     title: "",
@@ -50,8 +50,6 @@ const Modal = (props) => {
 
     !validateEventRange(date, startTime, endTime) ? alert("Event shouldn't be more than 6 hours!") : !validateEventsInCalendarCell(props.events, newEvent) ? alert("Put 1 event at a time period") : createEvent(newEvent).then(() => fetchEvents());
   };
-
-  const { isOpen, onCloseModal } = useGlobalContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
