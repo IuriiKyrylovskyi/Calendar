@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdDelete } from "react-icons/md";
 import { validateOnDelete } from "../../validation/validateModalInputs";
+import PropTypes from "prop-types";
 import "./event.scss";
 
 const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fetchEvents }) => {
@@ -51,6 +52,16 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
   );
 };
 
+Event.propTypes = {
+  id: PropTypes.string,
+  height: PropTypes.number,
+  marginTop: PropTypes.number,
+  title: PropTypes.string,
+  time: PropTypes.string,
+  startTime: PropTypes.number,
+  handleDelete: PropTypes.func,
+  fetchEvents: PropTypes.func,
+};
 export default Event;
 
 function useOnClickOutside(ref, handler) {
