@@ -2,8 +2,6 @@ import React from "react";
 import { useGlobalContext } from "../../context";
 import TimeLine from "../timeLine/TimeLine";
 import Event from "../event/Event";
-// import { deleteEvent } from '../../gateway/gateway';
-// import { formatMins } from "../../../src/utils/dateUtils.js";
 
 const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEvents, deleteEvent }) => {
   const currentMonth = new Date(weekDates[new Date().getDay()]).getMonth();
@@ -51,7 +49,7 @@ const Hour = ({ weekStartDate, weekDates, dataDay, dataHour, hourEvents, fetchEv
           style={{ width: "100%", height: "100%" }}
           onClick={() => {
             const date = weekDates.filter((dayDate) => dayDate.getDate() === dataDay);
-            console.log(new Date(new Date(date).setHours(dataHour)).getHours());
+            // console.log(new Date(new Date(date).setHours(dataHour)).getHours());
             const start = new Date(date).setHours(dataHour);
             const end = new Date(date).setHours(dataHour + 1);
             // end.setHours(end.getHours() + 1);

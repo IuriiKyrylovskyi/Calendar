@@ -6,9 +6,9 @@ import "./event.scss";
 const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fetchEvents }) => {
   const [isOpenDelete, setIsOpenDelete] = useState(false);
 
-  const ref = useRef();
+  const clickedHour = useRef();
 
-  useOnClickOutside(ref, () => setIsOpenDelete(false));
+  useOnClickOutside(clickedHour, () => setIsOpenDelete(false));
 
   function onCloseDelete() {
     if (!validateOnDelete(startTime)) {
@@ -28,7 +28,7 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
   return (
     <>
       <div
-        ref={ref}
+        ref={clickedHour}
         style={eventStyle}
         className="event"
         onClick={() => setIsOpenDelete(!isOpenDelete)}

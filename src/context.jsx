@@ -5,7 +5,6 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isEvent, setEvent] = useState(false);
 
   const [dateInput, setDateInput] = useState("");
   const [startTimeInput, setStartTimeInput] = useState("");
@@ -20,7 +19,6 @@ const AppProvider = ({ children }) => {
     setStartTimeInput(start ? moment(start).format("HH:mm") : moment().format("HH:mm"));
     setEndTimeInput(end ? moment(end).format("HH:mm") : moment().format("HH:mm"));
 
-    setEvent(false);
     setIsOpen(true);
   };
 
@@ -28,7 +26,6 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         isOpen,
-        isEvent,
         onCloseModal,
         onOpenModal,
 

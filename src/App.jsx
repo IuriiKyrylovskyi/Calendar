@@ -31,7 +31,7 @@ const App = () => {
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
-  const { isEvent, isOpen } = useGlobalContext();
+  const { isOpen } = useGlobalContext();
 
   return (
     <>
@@ -44,7 +44,6 @@ const App = () => {
       <Calendar
         weekDates={weekDates}
         weekStartDate={weekStartDate}
-        isEvent={isEvent}
         isOpen={isOpen}
         //
       />

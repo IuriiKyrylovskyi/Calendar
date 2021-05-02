@@ -1,11 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../../context";
-// import Modal from "../modal/Modal";
-
-// import moment from 'moment';
-
 import { months } from "../../utils/dateUtils.js";
-
 import "./header.scss";
 
 const Header = (props) => {
@@ -39,7 +34,6 @@ const Header = (props) => {
         </button>
         <span className="navigation__displayed-month">{`${monthAtWeekStart === monthAtWeekEnd ? monthAtWeekStart : monthAtWeekStart + " - " + monthAtWeekEnd}`}</span>
       </div>
-      {/* {isOpen && <Modal isOpen={isOpen} onCloseModal={onCloseModal} />} */}
     </header>
   );
 };

@@ -22,27 +22,12 @@ const Calendar = (props) => {
   function handleEventDelete(id) {
     deleteEvent(id).then(() => fetchEvents());
   }
-
-  const { isOpen } = useGlobalContext();
-
+  
   useEffect(() => {
     fetchEvents();
   },[]);
-
-  // handleEventCreate = () => {
-  //   const { title, dateFrom, dateTo, description } = this.state;
-
-  //   const newEvent = {
-  //     title: title,
-  //     dateFrom: dateFrom,
-  //     dateTo: dateTo,
-  //     description: description,
-  //   }
-
-  //   createEvent(newEvent)
-  //     .then(() => this.fetchEvents())
-  // }
-
+  
+  const { isOpen } = useGlobalContext();
   const { weekStartDate, weekDates } = props;
   // console.log(weekDates);
   // console.log(events);
