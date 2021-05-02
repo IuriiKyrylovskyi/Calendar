@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../../context";
-import { months } from "../../utils/dateUtils.js";
+import PropTypes from "prop-types";
+import { months } from "../../utils/dateUtils";
 import "./header.scss";
 
 const Header = (props) => {
@@ -34,6 +35,18 @@ const Header = (props) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  handleTodayBtn: PropTypes.func.isRequired,
+  handleArrowBtn: PropTypes.func.isRequired,
+  onOpenModal: PropTypes.func.isRequired,
+};
+
+Header.defaultProps = {
+  weekDates: [],
+  onOpenModal: () => ({}),
 };
 
 export default Header;

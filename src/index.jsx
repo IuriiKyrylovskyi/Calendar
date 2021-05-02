@@ -7,10 +7,8 @@ import App from "./App";
 const rootElement = document.querySelector("#root");
 
 ReactDOM.render(
-  <React.StrictMode>
     <AppProvider>
       <App />
-    </AppProvider>
-  </React.StrictMode>,
+    </AppProvider>,
   rootElement
 );

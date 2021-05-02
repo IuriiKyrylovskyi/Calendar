@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/header/Header";
 import Calendar from "./components/calendar/Calendar";
 import { useGlobalContext } from "./context";
-
 import { getWeekStartDate, generateWeekRange } from "../src/utils/dateUtils.js";
-
 import "./common.scss";
 
 const App = () => {

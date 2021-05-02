@@ -43,8 +43,7 @@ const Modal = (props) => {
 
     const start = newEvent.startTime;
     const end = newEvent.startTime;
-    console.log(start);
-    console.log(startTime);
+   
     if (!validateInputMins(start) || !validateInputMins(end)) {
       return alert("minuts should be multiple of 15");
     }
