@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "../../context";
 import { MdDelete } from "react-icons/md";
 import { validateOnDelete } from "../../validation/validateModalInputs";
@@ -9,22 +9,9 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
 
   const [isClicked, setIsClicked] = useState(false);
 
-  function handleClickOnEvent() {
-    if (!isClicked) {
-      document.addEventListener("click", handleOutsideClick, false);
-    } else {
-      document.removeEventListener("click", handleOutsideClick, false);
-    }
+  const ref = useRef();
 
-    setIsClicked(!isClicked);
-  }
-
-  let node;
-  function handleOutsideClick(e) {
-    if (!node.contains(e.target)) {
-      handleClickOnEvent();
-    }
-  }
+  useOnClickOutside(ref, () => setIsClicked(false));
 
   // const onOpenDelete = (e) => {
   //   if (isOpen) {
@@ -59,13 +46,10 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
   return (
     <>
       <div
-        ref={node => {
-          node = node;
-        }}
+        ref={ref}
         style={eventStyle}
         className="event"
-        onClick={handleClickOnEvent}
-        // onClick={onOpenDelete}
+        onClick={() => setIsClicked(!isClicked)}
         //
       >
         <div className="event__title">{title}</div>
@@ -86,3 +70,21 @@ const Event = ({ id, height, marginTop, title, time, startTime, handleDelete, fe
 };
 
 export default Event;
+
+function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+
+      handler(event);
+    };
+
+    document.addEventListener("mousedown", listener);
+
+    return () => {
+      document.removeEventListener("mousedown", listener);
+    };
+  }, [ref, handler]);
+}
